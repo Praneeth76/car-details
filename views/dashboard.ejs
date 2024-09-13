@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title><%= title %></title>
+</head>
+<body>
+    <nav id="navtag">
+        <a href="/"id="tag">Home</a>
+        <a href="/auth/signup"id="tag">Sign Up</a>
+        <a href="/auth/login"id="tag">Login</a>
+        <a href="/dashboard"id="tag">Dashboard</a>
+    </nav>
+    <main>
+        <h1>Car Dashboard</h1>
+        
+        <form action="/search" method="post" id="searchForm">
+            <input type="text" name="carModel" placeholder="Enter Car Model" required>
+            <button type="submit">Search</button>
+        </form>
+
+       
+        <% if (errorMessage) { %>
+            <p style="color: red;"><%= errorMessage %></p>
+        <% } %>
+
+        
+        <% if (cars && cars.length > 0) { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Year</th>
+                        <th>Class</th>
+                        <th>Drive</th>
+                        <th>Fuel Type</th>
+                        <th>City MPG</th>
+                        <th>Highway MPG</th>
+                        <th>Transmission</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cars.forEach(car => { %>
+                        <tr>
+                            <td><%= car.make %></td>
+                            <td><%= car.model %></td>
+                            <td><%= car.year %></td>
+                            <td><%= car.class %></td>
+                            <td><%= car.drive %></td>
+                            <td><%= car.fuel_type %></td>
+                            <td><%= car.city_mpg %></td>
+                            <td><%= car.highway_mpg %></td>
+                            <td><%= car.transmission %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        <% } %>
+    </main>
+</body>
+</html>
